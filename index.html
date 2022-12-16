@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Meu Redirect</title>
+
+    <meta http-equiv="refresh" content="1; URL='https://segredosprosperidade.com/privacidade.html'"/>
+</head>
+<body>
+...
+</body>
+</html>
 
  <!-- Meta Pixel Code -->
 <script>
@@ -104,114 +115,7 @@ src="https://www.facebook.com/tr?id=1539416353236791&ev=PageView&noscript=1"
     </header>
 
     <script type="text/javascript">
-      
-        var getUrlParameter = function getUrlParameter(sParam) {
-            var sPageURL = window.location.search.substring(1),
-                sURLVariables = sPageURL.split('&'),
-                sParameterName,
-                i;
-
-            for (i = 0; i < sURLVariables.length; i++) {
-                sParameterName = sURLVariables[i].split('=');
-
-                if (sParameterName[0] === sParam) {
-                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                }
-            }
-            return false;
-        };
-
-        var pixel = getUrlParameter('pixel');
-        var src = getUrlParameter('src');
-        var d = getUrlParameter('d');
-
-        function mostrar() {
-            var hiddenElements = document.getElementsByClassName('esconder');
-            for (let index = 0; index < hiddenElements.length; index++) {
-                hiddenElements[index].setAttribute('style', 'display: block !important;');
-                console.log(hiddenElements);
-            }
-        }
-
-        var tempo;
-
-        if (d === false || d === undefined) {
-            tempo = 1025;
-        } else {
-            tempo = d; // default value
-        }
-
-        var res = tempo * 1000;
-
-        setTimeout("mostrar()", res);
-
-        fbq('init', getUrlParameter('pixel'));
-        fbq('track', 'ViewContent');
-
-        var urlCheckout = "https://pay.kiwify.com.br/d3Fv8KL/?src=" + src; // ALTERA URL DO CHECKOUT
-
-        var a = document.getElementsByTagName('a');
-
-        function addToCart() {
-            fbq('track', 'AddToCart');
-        }
-
-        for (var i = 0; i < a.length; i++) {
-            a[i].href = urlCheckout;
-            a[i].setAttribute('onclick', 'addToCart()');
-        }
-
-        (function (b) {
-            var a = {
-                version: "0.0.1",
-                history_api: typeof history.pushState !== "undefined",
-                init: function () {
-                    b.location.hash = "#no-back";
-                    a.configure();
-                },
-                hasChanged: function () {
-                    if (b.location.hash == "#no-back") {
-                        b.location.hash = "#";
-                        b.location.href = urlCheckout; //LINK PARA REDIRECIONAR AQUI
-                    }
-                },
-                checkCompat: function () {
-                    if (b.addEventListener) {
-                        b.addEventListener("hashchange", a.hasChanged, false);
-                    } else {
-                        if (b.attachEvent) {
-                            b.attachEvent("onhashchange", a.hasChanged);
-                        } else {
-                            b.onhashchange = a.hasChanged;
-                        }
-                    }
-                },
-                configure: function () {
-                    if (b.location.hash == "#no-back") {
-                        if (this.history_api) {
-                            history.pushState(null, "", "#");
-                        } else {
-                            b.location.hash = "#";
-                            b.location.href = urlCheckout; //LINK PARA REDIRECIONAR AQUI
-                        }
-                    }
-                    a.checkCompat();
-                    a.hasChanged();
-                }
-            };
-            if (typeof define === "function" && define.amd) {
-                define(function () {
-                    return a;
-                });
-            } else {
-                if (typeof module === "object" && module.exports) {
-                    module.exports = a;
-                } else {
-                    b.noback = a;
-                }
-            }
-            a.init();
-        }(window));
+     setTimeout(() => {document.getElementById("cta1").classList.remove("d-none")}, 1025000); // temporização da Call to Action (em milissegundos)
        
     </script>
    
