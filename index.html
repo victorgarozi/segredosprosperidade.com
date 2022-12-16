@@ -104,8 +104,63 @@ src="https://www.facebook.com/tr?id=1539416353236791&ev=PageView&noscript=1"
     </header>
 
     <script type="text/javascript">
-      setTimeout(() => {document.getElementById("cta1").classList.remove("d-none")}, 1025000); // temporização da Call to Action (em milissegundos)
-     
+      
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+            return false;
+        };
+
+        var pixel = getUrlParameter('pixel');
+        var src = getUrlParameter('src');
+        var d = getUrlParameter('d');
+
+        function mostrar() {
+            var hiddenElements = document.getElementsByClassName('esconder');
+            for (let index = 0; index < hiddenElements.length; index++) {
+                hiddenElements[index].setAttribute('style', 'display: block !important;');
+                console.log(hiddenElements);
+            }
+        }
+
+        var tempo;
+
+        if (d === false || d === undefined) {
+            tempo = 723;
+        } else {
+            tempo = d; // default value
+        }
+
+        var res = tempo * 1000;
+
+        setTimeout("mostrar()", res);
+
+        fbq('init', getUrlParameter('pixel'));
+        fbq('track', 'ViewContent');
+
+        var urlCheckout = "https://pay.kiwify.com.br/0lQtqzx/?src=" + src; // ALTERA URL DO CHECKOUT
+
+        var a = document.getElementsByTagName('a');
+
+        function addToCart() {
+            fbq('track', 'AddToCart');
+        }
+
+        for (var i = 0; i < a.length; i++) {
+            a[i].href = urlCheckout;
+            a[i].setAttribute('onclick', 'addToCart()');
+        }
+
         (function (b) {
             var a = {
                 version: "0.0.1",
@@ -117,7 +172,7 @@ src="https://www.facebook.com/tr?id=1539416353236791&ev=PageView&noscript=1"
                 hasChanged: function () {
                     if (b.location.hash == "#no-back") {
                         b.location.hash = "#";
-                        b.location.href = https://pay.kiwify.com.br/d3Fv8KL/?src="; //LINK PARA REDIRECIONAR AQUI
+                        b.location.href = urlCheckout + "&utm_source=back_redirect"; //LINK PARA REDIRECIONAR AQUI
                     }
                 },
                 checkCompat: function () {
@@ -137,7 +192,7 @@ src="https://www.facebook.com/tr?id=1539416353236791&ev=PageView&noscript=1"
                             history.pushState(null, "", "#");
                         } else {
                             b.location.hash = "#";
-                            b.location.href = https://pay.kiwify.com.br/d3Fv8KL/?src="; //LINK PARA REDIRECIONAR AQUI
+                            b.location.href = urlCheckout + "&utm_source=back_redirect"; //LINK PARA REDIRECIONAR AQUI
                         }
                     }
                     a.checkCompat();
@@ -157,7 +212,7 @@ src="https://www.facebook.com/tr?id=1539416353236791&ev=PageView&noscript=1"
             }
             a.init();
         }(window));
-     
+       
     </script>
    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
